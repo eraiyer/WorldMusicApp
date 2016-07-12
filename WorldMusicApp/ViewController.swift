@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
 class ViewController: UIViewController {
 
@@ -40,6 +41,23 @@ class ViewController: UIViewController {
         
         self.mapView.removeAnnotations(mapView.annotations)
         self.mapView.addAnnotation(annotation)
+        
+        //convert location coordinates address
+        let geoCoder = CLGeocoder()
+        let loc = CLLocation(latitude: locationCoord.latitude, longitude: locationCoord.longitude)
+        
+        geoCoder.reverseGeocodeLocation(loc){
+            (placemarks, error) -> Void in
+            let placeArray = placemarks as [CLPlacemark]!
+
+            var placeMark: CLPlacemark!
+            placeMark = placeArray?[0]
+            
+            if let country = placeMark.addressDictionary?["Country"] as? NSString
+            {
+                print(country)
+            }
+        }
     }
 }
 
