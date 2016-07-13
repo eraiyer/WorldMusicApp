@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E44954AE96FA137C5FCD99E /* Pods_WorldMusicApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 800C164A2865AA31DB2F964D /* Pods_WorldMusicApp.framework */; };
 		EF7F669F1D33F948004CC839 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7F669E1D33F948004CC839 /* AppDelegate.swift */; };
 		EF7F66A11D33F948004CC839 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7F66A01D33F948004CC839 /* ViewController.swift */; };
 		EF7F66A41D33F949004CC839 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF7F66A21D33F949004CC839 /* Main.storyboard */; };
@@ -15,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		45380F9D8A4A69970FEE8858 /* Pods-WorldMusicApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorldMusicApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-WorldMusicApp/Pods-WorldMusicApp.release.xcconfig"; sourceTree = "<group>"; };
+		800C164A2865AA31DB2F964D /* Pods_WorldMusicApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WorldMusicApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF7F669B1D33F948004CC839 /* WorldMusicApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorldMusicApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF7F669E1D33F948004CC839 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF7F66A01D33F948004CC839 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +25,7 @@
 		EF7F66A51D33F949004CC839 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EF7F66A81D33F949004CC839 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EF7F66AA1D33F949004CC839 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F21E6045D3E831F793F5361C /* Pods-WorldMusicApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorldMusicApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WorldMusicApp/Pods-WorldMusicApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +33,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E44954AE96FA137C5FCD99E /* Pods_WorldMusicApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		73DFCB5EB48D305DB394436E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F21E6045D3E831F793F5361C /* Pods-WorldMusicApp.debug.xcconfig */,
+				45380F9D8A4A69970FEE8858 /* Pods-WorldMusicApp.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D56C2029A432E823AB5C8BA5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				800C164A2865AA31DB2F964D /* Pods_WorldMusicApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EF7F66921D33F948004CC839 = {
 			isa = PBXGroup;
 			children = (
 				EF7F669D1D33F948004CC839 /* WorldMusicApp */,
 				EF7F669C1D33F948004CC839 /* Products */,
+				73DFCB5EB48D305DB394436E /* Pods */,
+				D56C2029A432E823AB5C8BA5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EF7F66AD1D33F949004CC839 /* Build configuration list for PBXNativeTarget "WorldMusicApp" */;
 			buildPhases = (
+				9FB824A00D1250DD9411E236 /* [CP] Check Pods Manifest.lock */,
 				EF7F66971D33F948004CC839 /* Sources */,
 				EF7F66981D33F948004CC839 /* Frameworks */,
 				EF7F66991D33F948004CC839 /* Resources */,
+				25A1C3F42855A0A4750B4CAB /* [CP] Embed Pods Frameworks */,
+				3B44DF63FA1B4C88EA91F504 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -129,6 +156,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		25A1C3F42855A0A4750B4CAB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WorldMusicApp/Pods-WorldMusicApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3B44DF63FA1B4C88EA91F504 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WorldMusicApp/Pods-WorldMusicApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9FB824A00D1250DD9411E236 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EF7F66971D33F948004CC839 /* Sources */ = {
@@ -247,6 +322,7 @@
 		};
 		EF7F66AE1D33F949004CC839 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F21E6045D3E831F793F5361C /* Pods-WorldMusicApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = WorldMusicApp/Info.plist;
@@ -258,6 +334,7 @@
 		};
 		EF7F66AF1D33F949004CC839 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 45380F9D8A4A69970FEE8858 /* Pods-WorldMusicApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = WorldMusicApp/Info.plist;
@@ -286,6 +363,7 @@
 				EF7F66AF1D33F949004CC839 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

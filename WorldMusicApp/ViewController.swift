@@ -9,16 +9,41 @@
 import UIKit
 import MapKit
 import CoreLocation
+import Alamofire
+import SwiftyJSON
+
 
 class ViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var titleTextField: UITextField!
     
     override func viewDidLoad() {
         let initialLocation = CLLocation(latitude: 36.7783, longitude: -119.4179)
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         centerMapOnLocation(initialLocation)
+        
+       let apiToContact = "https://api.spotify.com/v1/search?q=music+from+latvia&type=album"
+        // This code will call the iTunes top 25 movies endpoint listed above
+        Alamofire.request(.GET, apiToContact).validate().responseJSON() { response in
+            switch response.result {
+            case .Success:
+                if let value = response.result.value {
+                    let json = JSON(value)
+                    var counter = 0
+                    for(key, subJson) in json["albums"]{
+                        if let albumTitle = json["albums"]["items"][counter]["name"].string {
+                            print(albumTitle)
+                            counter++
+                        }
+                        
+                    }
+                }
+            case .Failure(let error):
+                print(error)
+            }
+        }
 
     }
     
@@ -35,7 +60,7 @@ class ViewController: UIViewController {
         let location = sender.locationInView(self.mapView)
         
         let locationCoord = self.mapView.convertPoint(location, toCoordinateFromView: self.mapView)
-        
+
         let annotation = MKPointAnnotation()
         annotation.coordinate = locationCoord
         
@@ -55,7 +80,8 @@ class ViewController: UIViewController {
             
             if let country = placeMark.addressDictionary?["Country"] as? NSString
             {
-                print(country)
+               // print(country)
+                self.titleTextField.text = country as String
             }
         }
     }

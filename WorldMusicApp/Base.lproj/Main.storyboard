@@ -36,12 +36,6 @@
                                     <color key="titleColor" red="0.0" green="0.57349759619999996" blue="0.57349759619999996" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FZa-1Y-0p1">
-                                <rect key="frame" x="21" y="0.0" width="448" height="30"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Fj-zB-a4C">
                                 <rect key="frame" x="194" y="570" width="60" height="30"/>
                                 <constraints>
@@ -67,6 +61,13 @@
                                     <outletCollection property="gestureRecognizers" destination="kWD-ci-NxU" appends="YES" id="Zxr-Mi-Q4b"/>
                                 </connections>
                             </mapView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FZa-1Y-0p1">
+                                <rect key="frame" x="21" y="0.0" width="448" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.0" green="0.57349759619999996" blue="0.57349759619999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -90,6 +91,7 @@
                     </view>
                     <connections>
                         <outlet property="mapView" destination="Jcd-ZF-nbj" id="U0t-Fi-9J1"/>
+                        <outlet property="titleTextField" destination="FZa-1Y-0p1" id="0b0-75-17u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
