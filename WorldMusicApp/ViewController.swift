@@ -99,13 +99,34 @@ class ViewController: UIViewController {
                                     self.idArray.append(albumLinkWithID)
                                     counter+=1
                                 }
-                                    
                             }
                         }
                     case .Failure(let error):
                         print(error)
                     }
                 }
+            }
+            var idCounter =  0
+            while idCounter < self.idArray.count {
+                let apiToContact = self.idArray[idCounter]
+                Alamofire.request(.GET, apiToContact).validate().responseJSON() { response in
+                    switch response.result {
+                    case .Success:
+                        if let value = response.result.value {
+                            let json = JSON(value)
+                            var counter = 0
+                            for(_, _) in json["items"]{
+                                if let previewUrl = json["items"][counter]["preview_url"].string {
+                                    print(previewUrl)
+                                    counter += 1
+                                }
+                            }
+                        }
+                    case .Failure(let error):
+                        print(error)
+                    }
+                }
+             idCounter += 1
             }
            // self.listTrackPreview()
           //  self.listAlbumTracks()
