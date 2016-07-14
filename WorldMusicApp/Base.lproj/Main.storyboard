@@ -27,15 +27,6 @@
                                     <color key="titleColor" red="0.0" green="0.57349759619999996" blue="0.57349759619999996" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gbr-uS-Xdo">
-                                <rect key="frame" x="348" y="570" width="60" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="8Yl-jv-PFn"/>
-                                </constraints>
-                                <state key="normal" title="Forward">
-                                    <color key="titleColor" red="0.0" green="0.57349759619999996" blue="0.57349759619999996" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Fj-zB-a4C">
                                 <rect key="frame" x="194" y="570" width="60" height="30"/>
                                 <constraints>
@@ -68,6 +59,15 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gbr-uS-Xdo">
+                                <rect key="frame" x="348" y="570" width="60" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="8Yl-jv-PFn"/>
+                                </constraints>
+                                <state key="normal" title="Forward">
+                                    <color key="titleColor" red="0.0" green="0.57349759619999996" blue="0.57349759619999996" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

@@ -23,27 +23,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         centerMapOnLocation(initialLocation)
-        
-       let apiToContact = "https://api.spotify.com/v1/search?q=music+from+latvia&type=album"
-        // This code will call the iTunes top 25 movies endpoint listed above
-        Alamofire.request(.GET, apiToContact).validate().responseJSON() { response in
-            switch response.result {
-            case .Success:
-                if let value = response.result.value {
-                    let json = JSON(value)
-                    var counter = 0
-                    for(key, subJson) in json["albums"]{
-                        if let albumTitle = json["albums"]["items"][counter]["name"].string {
-                            print(albumTitle)
-                            counter++
-                        }
-                        
-                    }
-                }
-            case .Failure(let error):
-                print(error)
-            }
-        }
 
     }
     
@@ -80,10 +59,77 @@ class ViewController: UIViewController {
             
             if let country = placeMark.addressDictionary?["Country"] as? NSString
             {
-               // print(country)
                 self.titleTextField.text = country as String
+            }
+            self.listTrackPreview()
+          //  self.listAlbumTracks()
+        }
+    }
+    
+    func listAlbumTitles(){
+        let apiToContact = "https://api.spotify.com/v1/search?q=music+from+italy&type=album"
+        Alamofire.request(.GET, apiToContact).validate().responseJSON() { response in
+            switch response.result {
+            case .Success:
+                if let value = response.result.value {
+                    let json = JSON(value)
+                    var counter = 0
+                    for(_, _) in json["albums"]{
+                        if let albumTitle = json["albums"]["items"][counter]["name"].string {
+                            print(albumTitle)
+                            counter += 1
+                        }
+                    }
+                }
+            case .Failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func listAlbumTracks () {
+        let apiToContact = "https://api.spotify.com/v1/albums/6akEvsycLGftJxYudPjmqK/tracks"
+        Alamofire.request(.GET, apiToContact).validate().responseJSON() { response in
+            switch response.result {
+            case .Success:
+                if let value = response.result.value {
+                    let json = JSON(value)
+                    var counter = 0
+                    for(_, _) in json["items"]{
+                        if let artistName = json["items"][counter]["artists"][0]["name"].string {
+                            if let songName = json["items"][counter]["name"].string {
+                                print(artistName + ", " + songName)
+                            }
+                        counter += 1
+                        }
+                    }
+                }
+            case .Failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func listTrackPreview(){
+        //you want to change the url to fit all the albums
+        let apiToContact = "https://api.spotify.com/v1/albums/6akEvsycLGftJxYudPjmqK/tracks"
+        Alamofire.request(.GET, apiToContact).validate().responseJSON() { response in
+            switch response.result {
+            case .Success:
+                if let value = response.result.value {
+                    let json = JSON(value)
+                    var counter = 0
+                    for(_, _) in json["items"]{
+                        if let previewUrl = json["items"][counter]["preview_url"].string {
+                            print(previewUrl)
+                            counter += 1
+                        }
+                    }
+                }
+            case .Failure(let error):
+                print(error)
+
             }
         }
     }
 }
-
