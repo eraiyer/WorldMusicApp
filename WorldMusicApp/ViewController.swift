@@ -17,6 +17,7 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var titleTextField: UITextField!
+    var idArray: [String] = []
     
     override func viewDidLoad() {
         let initialLocation = CLLocation(latitude: 36.7783, longitude: -119.4179)
@@ -35,6 +36,9 @@ class ViewController: UIViewController {
     func showAddViewController(placemark:CLPlacemark){
         self.performSegueWithIdentifier("add", sender: placemark)
     }
+    
+    
+    
     @IBAction func addPin(sender: UILongPressGestureRecognizer) {
         let location = sender.locationInView(self.mapView)
         
@@ -60,33 +64,55 @@ class ViewController: UIViewController {
             if let country = placeMark.addressDictionary?["Country"] as? NSString
             {
                 self.titleTextField.text = country as String
+                
+            //fix the multiple word country problem
+            //this prints the list of album titles that correpsond to the location clicked on
+           /* let apiToContact = "https://api.spotify.com/v1/search?q=music+from+\(country)&type=album"
+            Alamofire.request(.GET, apiToContact).validate().responseJSON() { response in
+                switch response.result {
+                case .Success:
+                    if let value = response.result.value {
+                        let json = JSON(value)
+                        var counter = 0
+                        for(_, _) in json["albums"]{
+                            if let albumTitle = json["albums"]["items"][counter]["name"].string {
+                                print(albumTitle)
+                                counter += 1
+                            }
+                        }
+                    }
+                case .Failure(let error):
+                    print(error)
+                }
             }
-            self.listTrackPreview()
+        }*/
+        let apiToContact = "https://api.spotify.com/v1/search?q=music+from+\(country)&type=album"
+                Alamofire.request(.GET, apiToContact).validate().responseJSON() { response in
+                    switch response.result {
+                    case .Success:
+                        if let value = response.result.value {
+                            let json = JSON(value)
+                            var counter = 0
+                            for(_,_) in json["albums"]{
+                                if let albumID = json["albums"]["items"][counter]["id"].string {
+                                    var albumLinkWithID = "https://api.spotify.com/v1/albums/\(albumID)/tracks"
+                                    self.idArray.append(albumLinkWithID)
+                                    counter+=1
+                                }
+                                    
+                            }
+                        }
+                    case .Failure(let error):
+                        print(error)
+                    }
+                }
+            }
+           // self.listTrackPreview()
           //  self.listAlbumTracks()
         }
     }
-    
-    func listAlbumTitles(){
-        let apiToContact = "https://api.spotify.com/v1/search?q=music+from+italy&type=album"
-        Alamofire.request(.GET, apiToContact).validate().responseJSON() { response in
-            switch response.result {
-            case .Success:
-                if let value = response.result.value {
-                    let json = JSON(value)
-                    var counter = 0
-                    for(_, _) in json["albums"]{
-                        if let albumTitle = json["albums"]["items"][counter]["name"].string {
-                            print(albumTitle)
-                            counter += 1
-                        }
-                    }
-                }
-            case .Failure(let error):
-                print(error)
-            }
-        }
-    }
-    
+}
+
     func listAlbumTracks () {
         let apiToContact = "https://api.spotify.com/v1/albums/6akEvsycLGftJxYudPjmqK/tracks"
         Alamofire.request(.GET, apiToContact).validate().responseJSON() { response in
@@ -131,5 +157,8 @@ class ViewController: UIViewController {
 
             }
         }
-    }
+    
+        
+        
 }
+
