@@ -11,13 +11,15 @@ import MapKit
 import CoreLocation
 import Alamofire
 import SwiftyJSON
-
+import AVFoundation
 
 class ViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var titleLabel: UILabel!
+
     var idArray: [String] = []
+    var previewArray: [String] = []
     
     override func viewDidLoad() {
         let initialLocation = CLLocation(latitude: 36.7783, longitude: -119.4179)
@@ -63,12 +65,11 @@ class ViewController: UIViewController {
             
             if let country = placeMark.addressDictionary?["Country"] as? NSString
             {
-                self.titleTextField.text = country as String
-                
+                self.titleLabel.text = country as String
             //this prints the list of album titles that correpsond to the location clicked on
                 
             var countryWithPlus = "\(country)".stringByReplacingOccurrencesOfString(" ", withString: "+")
-           // print(countryWithPlus)
+          
                 
         /*  let apiToContact = "https://api.spotify.com/v1/search?q=music+from+\(countryWithPlus)&type=album"
             Alamofire.request(.GET, apiToContact).validate().responseJSON() { response in
@@ -111,8 +112,9 @@ class ViewController: UIViewController {
                 }
             }
             
-            //goes through the array of album IDs
+            //goes through the array of album IDs and prints the preview url of each track in each album
             var idCounter =  0
+            
             while idCounter < self.idArray.count {
                 let apiToContact = self.idArray[idCounter]
                 Alamofire.request(.GET, apiToContact).validate().responseJSON() { response in
@@ -123,10 +125,12 @@ class ViewController: UIViewController {
                             var counter = 0
                             for(_, _) in json["items"]{
                                 if let previewUrl = json["items"][counter]["preview_url"].string {
-                                    print(previewUrl)
+                                    self.previewArray.append(previewUrl)
+                                   
                                     counter += 1
                                 }
                             }
+                            print(self.previewArray)
                         }
                     case .Failure(let error):
                         print(error)
@@ -135,10 +139,38 @@ class ViewController: UIViewController {
              idCounter += 1
             }
         }
+        
+        
+//        if let artistName = json["items"][counter]["artists"][0]["name"].string {
+//            if let songName = json["items"][counter]["name"].string {
+//              self.titleLabel.text = songName as String + " by " + artistName as String
+        
+        
+        
+        var urlCounter = 0
+        var player = AVPlayer()
+        
+        while urlCounter < self.previewArray.count {
+           let url = previewArray[urlCounter]
+           let playerItem = AVPlayerItem( URL: NSURL(string:url)!)
+           player = AVPlayer(playerItem:playerItem)
+           player.rate = 1.0;
+           player.play()
+           urlCounter+=1
+        }
     }
 }
+        
+        
+        
+        
+        
+        
+        
 
-  /*func listAlbumTracks () {
+
+
+  func listAlbumTracks () {
         let apiToContact = "https://api.spotify.com/v1/albums/6akEvsycLGftJxYudPjmqK/tracks"
         Alamofire.request(.GET, apiToContact).validate().responseJSON() { response in
             switch response.result {
@@ -159,7 +191,8 @@ class ViewController: UIViewController {
                 print(error)
             }
         }
-    }*/
+    }
+
     
  /*   func listTrackPreview(){
         //you want to change the url to fit all the albums
@@ -182,8 +215,5 @@ class ViewController: UIViewController {
 
             }
         }
-    
-        
-        
 }*/
 
