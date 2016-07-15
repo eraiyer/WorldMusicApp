@@ -65,9 +65,12 @@ class ViewController: UIViewController {
             {
                 self.titleTextField.text = country as String
                 
-            //fix the multiple word country problem
             //this prints the list of album titles that correpsond to the location clicked on
-           /* let apiToContact = "https://api.spotify.com/v1/search?q=music+from+\(country)&type=album"
+                
+            var countryWithPlus = "\(country)".stringByReplacingOccurrencesOfString(" ", withString: "+")
+           // print(countryWithPlus)
+                
+        /*  let apiToContact = "https://api.spotify.com/v1/search?q=music+from+\(countryWithPlus)&type=album"
             Alamofire.request(.GET, apiToContact).validate().responseJSON() { response in
                 switch response.result {
                 case .Success:
@@ -76,7 +79,7 @@ class ViewController: UIViewController {
                         var counter = 0
                         for(_, _) in json["albums"]{
                             if let albumTitle = json["albums"]["items"][counter]["name"].string {
-                                print(albumTitle)
+                               print(albumTitle)
                                 counter += 1
                             }
                         }
@@ -86,7 +89,8 @@ class ViewController: UIViewController {
                 }
             }
         }*/
-        let apiToContact = "https://api.spotify.com/v1/search?q=music+from+\(country)&type=album"
+        //getting the ID number of each album of the country and adding it to an array
+        let apiToContact = "https://api.spotify.com/v1/search?q=music+from+\(countryWithPlus)&type=album"
                 Alamofire.request(.GET, apiToContact).validate().responseJSON() { response in
                     switch response.result {
                     case .Success:
@@ -106,6 +110,8 @@ class ViewController: UIViewController {
                     }
                 }
             }
+            
+            //goes through the array of album IDs
             var idCounter =  0
             while idCounter < self.idArray.count {
                 let apiToContact = self.idArray[idCounter]
@@ -128,13 +134,11 @@ class ViewController: UIViewController {
                 }
              idCounter += 1
             }
-           // self.listTrackPreview()
-          //  self.listAlbumTracks()
         }
     }
 }
 
-    func listAlbumTracks () {
+  /*func listAlbumTracks () {
         let apiToContact = "https://api.spotify.com/v1/albums/6akEvsycLGftJxYudPjmqK/tracks"
         Alamofire.request(.GET, apiToContact).validate().responseJSON() { response in
             switch response.result {
@@ -155,9 +159,9 @@ class ViewController: UIViewController {
                 print(error)
             }
         }
-    }
+    }*/
     
-    func listTrackPreview(){
+ /*   func listTrackPreview(){
         //you want to change the url to fit all the albums
         let apiToContact = "https://api.spotify.com/v1/albums/6akEvsycLGftJxYudPjmqK/tracks"
         Alamofire.request(.GET, apiToContact).validate().responseJSON() { response in
@@ -181,5 +185,5 @@ class ViewController: UIViewController {
     
         
         
-}
+}*/
 
